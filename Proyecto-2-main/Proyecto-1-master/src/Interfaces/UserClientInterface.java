@@ -139,7 +139,7 @@ public class UserClientInterface extends JFrame {
     }
 
 
-    private static void openProfileWindow(JFrame parentFrame) {
+    public static void openProfileWindow(JFrame parentFrame) {
         JFrame profileFrame = new JFrame("Perfil del Usuario");
         profileFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JPanel profilePanel = new JPanel();
@@ -178,7 +178,7 @@ public class UserClientInterface extends JFrame {
     }
 
 
-    private static void openLicenseWindow(JFrame parentFrame) {
+    public static void openLicenseWindow(JFrame parentFrame) {
         JFrame licenseFrame = new JFrame("Licencia");
         licenseFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JPanel licensePanel = new JPanel();

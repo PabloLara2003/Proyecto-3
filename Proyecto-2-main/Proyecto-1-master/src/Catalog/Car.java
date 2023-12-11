@@ -3,7 +3,7 @@ package Catalog;
 import java.util.ArrayList;
 public class Car {
 	
-	class Carro { 
+	class Carro {
 		private Integer ID;
 		private String Name;
 		private String Plates;
@@ -67,12 +67,20 @@ public class Car {
 			return Available;
 		}
 		
+		public void setAvailable(Boolean newAvailable) {
+			Available = newAvailable;
+		}
+		
 		public String getstate() {
 			return State;
 		}
 		
 		public String getpos() {
 			return POS;
+		}
+		
+		public void setPOS(String newPOS) {
+			POS = newPOS;
 		}
 		
 		public String toString() {

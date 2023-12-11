@@ -1,0 +1,11 @@
+{
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "c:\\Users\\natya\\Downloads\\iText-2.0.8.jar"
+        ],
+        "exclude": [
+            "c:\\Users\\User\\Downloads\\iText-2.0.8.jar"
+        ]
+    }
+}

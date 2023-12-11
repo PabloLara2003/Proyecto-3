@@ -79,8 +79,8 @@ public class AdminInterface extends JFrame implements ActionListener {
         licensePanel.setBorder(new EmptyBorder(20, 20, 20, 20));
         licensePanel.setLayout(new GridLayout(7, 2, 10, 10));
 
-        String[] labels = {"Placa:", "Modelo:", "Color:", "Categoría:",
-                "Fecha de disponibilidad:", "Sede:"};
+        String[] labels = {"ID:", "Placa:", "Marca:",  "Modelo:", "Color:", "Categoría:",
+                "Fecha de disponibilidad:", "Sede:", "Estado:"};
 
         for (String label : labels) {
             JLabel lbl = new JLabel(label);
@@ -107,7 +107,8 @@ public class AdminInterface extends JFrame implements ActionListener {
                 JTextField txtFecha = (JTextField) licensePanel.getComponent(9);
                 JTextField txtSede = (JTextField) licensePanel.getComponent(11);
             	if ((!txtPlaca.getText().isEmpty())&&(!txtModelo.getText().isEmpty())&&(!txtColor.getText().isEmpty())&&(!txtCategoria.getText().isEmpty())&&(!txtFecha.getText().isEmpty())&&(!txtSede.getText().isEmpty())) {
-	            	JOptionPane.showMessageDialog(null, "Se ha registrado el vehiculo con exito");
+	            	
+            		JOptionPane.showMessageDialog(null, "Se ha registrado el vehiculo con exito");
 	            	licenseFrame.setVisible(false);
             	}
             	else

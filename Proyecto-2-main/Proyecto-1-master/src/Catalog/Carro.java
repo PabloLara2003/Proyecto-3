@@ -4,37 +4,31 @@ import java.util.ArrayList;
 
 public class Carro {
 		private Integer ID;
-		private String Name;
 		private String Plates;
 		private String Category;
 		private String Brand;
 		private String Model;
-		private String Fuel;
 		private Float Kilometrage;
 		private Boolean Available;
 		private String State;
 		private String POS;
+		private String Color;
 		
-		public Carro(Integer ID, String Name, String Plates, String Category, String Brand, String Model, String Fuel, Float Kilometrage, Boolean Available, String State, String POS) {
+		public Carro(Integer ID, String Plates, String Category, String Brand, String Model, Float Kilometrage, Boolean Available, String State, String POS, String Color) {
 			this.ID = ID;
-			this.Name = Name;
 			this.Plates = Plates;
 			this.Category = Category;
 			this.Brand = Brand;
 			this.Model = Model;
-			this.Fuel = Fuel;
 			this.Kilometrage = Kilometrage;
 			this.Available = Available;
 			this.State = State;
 			this.POS = POS;
+			this.Color = Color;
 		}
 		
 		public Integer getid() {
 			return ID;
-		}
-		
-		public String getname() {
-			return Name;
 		}
 		
 		public String getplates() {
@@ -51,10 +45,6 @@ public class Carro {
 		
 		public String getmodel() {
 			return Model;
-		}
-		
-		public String getfuel() {
-			return Fuel;
 		}
 		
 		public Float getkilometrage() {
@@ -87,6 +77,6 @@ public class Carro {
 		}
 		
 		public String toString() {
-			return "ID: " + ID + ", Name: " + Name + ", Plates: " + Plates + ", Category: " + Category + ", Brand: " + Brand + ", Model: " + Model + ", Fuel: " + Fuel + ", Kilometrage: " + Kilometrage + ", Available: " + Available + ", State: " + State + ", POS: " + POS;
+			return "ID: " + ID + ", Plates: " + Plates + ", Category: " + Category + ", Brand: " + Brand + ", Model: " + Model + ", Kilometrage: " + Kilometrage + ", Available: " + Available + ", State: " + State + ", POS: " + POS + ", Color: " + Color;
 		}
 }

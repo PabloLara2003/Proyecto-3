@@ -1,4 +1,3 @@
-//Client Interface
 package Interfaces;
 
 import javax.swing.*;
@@ -138,7 +137,6 @@ public class UserClientInterface extends JFrame {
         successFrame.setVisible(true);
     }
 
-
     public static void openProfileWindow(JFrame parentFrame) {
         JFrame profileFrame = new JFrame("Perfil del Usuario");
         profileFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -176,7 +174,6 @@ public class UserClientInterface extends JFrame {
         profileFrame.setLocationRelativeTo(parentFrame);
         profileFrame.setVisible(true);
     }
-
 
     public static void openLicenseWindow(JFrame parentFrame) {
         JFrame licenseFrame = new JFrame("Licencia");
@@ -220,7 +217,6 @@ public class UserClientInterface extends JFrame {
         licenseFrame.setLocationRelativeTo(parentFrame);
         licenseFrame.setVisible(true);
     }
-
 
     private static void openCreditCardWindow(JFrame parentFrame) {
         JFrame creditCardFrame = new JFrame("Tarjeta de Crédito");
@@ -390,7 +386,7 @@ public class UserClientInterface extends JFrame {
         btnContinuar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                openReservationSuccessWindow(parentFrame);
+                openReservationSuccessWindow(parentFrame, creditCardInfo);
                 creditCardInscribedFrame.dispose();
             }
         });
@@ -404,8 +400,7 @@ public class UserClientInterface extends JFrame {
         creditCardInscribedFrame.setVisible(true);
     }
 
-
-    private static void openReservationSuccessWindow(JFrame parentFrame) {
+    private static void openReservationSuccessWindow(JFrame parentFrame, Map<String, Object> creditCardInfo) {
         JFrame successFrame = new JFrame("Reserva Exitosa");
         successFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JPanel successPanel = new JPanel();
@@ -436,6 +431,12 @@ public class UserClientInterface extends JFrame {
             textArea.append(entry.getKey() + ": " + entry.getValue() + "\n");
         }
 
+        // Agregamos la información de la tarjeta de crédito al área de texto
+        textArea.append("\nDetalles de la Tarjeta Inscrita:\n");
+        for (Map.Entry<String, Object> entry : creditCardInfo.entrySet()) {
+            textArea.append(entry.getKey() + ": " + entry.getValue() + "\n");
+        }
+
         JButton btnGuardar = new JButton("Guardar");
         btnGuardar.addActionListener(new ActionListener() {
             @Override
@@ -449,7 +450,7 @@ public class UserClientInterface extends JFrame {
         successPanel.add(btnGuardar);
 
         successFrame.getContentPane().add(successPanel, BorderLayout.CENTER);
-        successFrame.setSize(400, 200);  // Modificado el tamaño de la ventana
+        successFrame.setSize(400, 300);  // Modificado el tamaño de la ventana
         successFrame.setLocationRelativeTo(parentFrame);
         successFrame.setVisible(true);
     }

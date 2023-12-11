@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 public class Reservation {
@@ -114,6 +116,36 @@ public class Reservation {
         reservation.put("Costo que debera pagar al momento de realizar el alquiler", amountToBePaid);
 
         return reservation;
+    }
+    
+    public void writeDriverLicenseToCSV(String filename, Map<String, Object> licenseInfo) {
+        try (FileWriter writer = new FileWriter(filename)) {
+            for (Map.Entry<String, Object> entry : licenseInfo.entrySet()) {
+                writer.append(entry.getKey()).append(",").append(entry.getValue().toString()).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeCreditCardToCSV(String filename, Map<String, Object> creditCardInfo) {
+        try (FileWriter writer = new FileWriter(filename)) {
+            for (Map.Entry<String, Object> entry : creditCardInfo.entrySet()) {
+                writer.append(entry.getKey()).append(",").append(entry.getValue().toString()).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeReservationToCSV(String filename, Map<String, Object> reservationInfo) {
+        try (FileWriter writer = new FileWriter(filename)) {
+            for (Map.Entry<String, Object> entry : reservationInfo.entrySet()) {
+                writer.append(entry.getKey()).append(",").append(entry.getValue().toString()).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     

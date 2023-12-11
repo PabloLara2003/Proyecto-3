@@ -1,10 +1,15 @@
 package Handlers;
 
+import java.util.Date;
+
+import Catalog.CarCat;
+import Catalog.Carro;
 import Controller.Administrator;
 import Interfaces.ControllerAdmin;
 import UserInformationHolder.Client;
 import UserInformationHolder.Employee;
 import UserInformationHolder.User;
+
 
 public class ControllerAdminHandler implements ControllerAdmin {
 
@@ -55,5 +60,10 @@ public class ControllerAdminHandler implements ControllerAdmin {
     @Override
     public User searchUser(Administrator administrator, String name) {
         return administrator.searchUser(name);
+    }
+    public void addCar(Administrator administrator, int ID, String plates, String categoria, String brand, String model, Float kilometrage,
+			boolean available, String state, String pos,String color) {
+    	Carro e = new Carro(ID, plates, categoria, brand, model, kilometrage, available, state, pos, color);
+    	administrator.addCar(e);
     }
 }

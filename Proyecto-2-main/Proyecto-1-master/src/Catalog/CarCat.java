@@ -1,5 +1,7 @@
 package Catalog;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import Catalog.Carro;
@@ -16,6 +18,16 @@ public class CarCat {
 
 	public void agregarCarro(Carro carro) {
 		carros.add(carro);
+		try (FileWriter fichero = new FileWriter("Data/carros.txt"))
+        {
+            PrintWriter pw = new PrintWriter(fichero);
+
+            for ( Carro element : carros)
+                pw.println(element.getid());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	
 	}
 

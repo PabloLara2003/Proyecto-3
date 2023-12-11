@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -42,17 +43,21 @@ public class Disponibilidad extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JButton disponibilidad_C = new JButton("disponibilidad carro ");
+        JButton disponibilidad_C = new JButton("Disponibilidad Carro");
         disponibilidad_C.setBounds(63, 53, 151, 23);
         contentPane.add(disponibilidad_C);
 
-        JButton añadir_C = new JButton("Añadir Conductor ");
+        JButton añadir_C = new JButton("Añadir Conductor");
         añadir_C.setBounds(63, 113, 151, 23);
         contentPane.add(añadir_C);
 
-        JButton cerrar_S = new JButton("cerrar Sesión");
+        JButton cerrar_S = new JButton("Cerrar Sesión");
         cerrar_S.setBounds(80, 262, 114, 23);
         contentPane.add(cerrar_S);
+
+        JButton pdfFactura = new JButton("PDF Factura");
+        pdfFactura.setBounds(63, 173, 151, 23);
+        contentPane.add(pdfFactura);
 
         // Add ActionListener to the "Cerrar_S" button
         cerrar_S.addActionListener(new ActionListener() {
@@ -81,6 +86,15 @@ public class Disponibilidad extends JFrame {
                 dispose(); // Close the current frame
             }
         });
+
+        // Add ActionListener to the "PDF Factura" button
+        pdfFactura.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Move to the Factura frame
+                Factura facturaFrame = new Factura();
+                facturaFrame.setVisible(true);
+                dispose(); // Close the current frame
+            }
+        });
     }
 }
-

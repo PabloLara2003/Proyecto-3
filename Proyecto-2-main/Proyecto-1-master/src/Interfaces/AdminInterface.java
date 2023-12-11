@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,6 +17,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import Controller.Administrator;
+import Handlers.ControllerAdminHandler;
 
 public class AdminInterface extends JFrame implements ActionListener {
 	JButton BtnRegVehiculo;
@@ -26,13 +31,18 @@ public class AdminInterface extends JFrame implements ActionListener {
 	JButton BtnAtrasRD;
 	JButton BtnAtrasCF;
 	Color backgroundColor = new Color(66, 57, 91);
+	ControllerAdminHandler adminF;
+	Administrator admin;
 	
-	public AdminInterface() {
+	public AdminInterface(ControllerAdminHandler cah, Administrator adminP) {
 		setSize(500, 650);
 		setTitle("Admin");
+		setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         JPanel panel = new JPanel();
         panel.setBackground(backgroundColor);
+        adminF = cah;
+        admin = adminP;
 
         add(panel);
         panel.setLayout(new GridLayout(11,3));
@@ -63,12 +73,6 @@ public class AdminInterface extends JFrame implements ActionListener {
 			}
         }
 	}
-
-	public static void main(String[] args) {
-		AdminInterface admin = new AdminInterface();
-		admin.setVisible(true);
-		admin.setLocationRelativeTo(null);
-	}
 	
 	public void crearRegVehiculo(JFrame parentFrame) {
 		JFrame licenseFrame = new JFrame("Registrar Vehiculo");
@@ -77,11 +81,11 @@ public class AdminInterface extends JFrame implements ActionListener {
         JPanel licensePanel = new JPanel();
         licensePanel.setBackground(backgroundColor);
         licensePanel.setBorder(new EmptyBorder(20, 20, 20, 20));
-        licensePanel.setLayout(new GridLayout(7, 2, 10, 10));
+        licensePanel.setLayout(new GridLayout(11, 2, 10, 10));
 
         String[] labels = {"ID:", "Placa:", "Marca:",  "Modelo:", "Color:", "Categoría:",
-                "Fecha de disponibilidad:", "Sede:", "Estado:"};
-
+                "Fecha de disponibilidad:", "Sede:", "Estado:", "Kilometraje:"};
+        JTextField txtFCal = new JTextField();
         for (String label : labels) {
             JLabel lbl = new JLabel(label);
             lbl.setForeground(Color.white);
@@ -100,14 +104,24 @@ public class AdminInterface extends JFrame implements ActionListener {
         btnContinuar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	JTextField txtPlaca = (JTextField) licensePanel.getComponent(1);
-                JTextField txtModelo = (JTextField) licensePanel.getComponent(3);
-                JTextField txtColor = (JTextField) licensePanel.getComponent(5);
-                JTextField txtCategoria = (JTextField) licensePanel.getComponent(7);
-                JTextField txtFecha = (JTextField) licensePanel.getComponent(9);
-                JTextField txtSede = (JTextField) licensePanel.getComponent(11);
-            	if ((!txtPlaca.getText().isEmpty())&&(!txtModelo.getText().isEmpty())&&(!txtColor.getText().isEmpty())&&(!txtCategoria.getText().isEmpty())&&(!txtFecha.getText().isEmpty())&&(!txtSede.getText().isEmpty())) {
-	            	
+            	JTextField txtID = (JTextField) licensePanel.getComponent(1);
+                JTextField txtPlaca = (JTextField) licensePanel.getComponent(3);
+                JTextField txtMarca = (JTextField) licensePanel.getComponent(5);
+                JTextField txtModelo = (JTextField) licensePanel.getComponent(7);
+                JTextField txtColor = (JTextField) licensePanel.getComponent(9);
+                JTextField txtCategoria = (JTextField) licensePanel.getComponent(11);
+                JTextField txtFecha = (JTextField) licensePanel.getComponent(13);
+                JTextField txtSede = (JTextField) licensePanel.getComponent(15);
+                JTextField txtEstado = (JTextField) licensePanel.getComponent(17);
+                JTextField txtKilometraje = (JTextField) licensePanel.getComponent(19);
+            	if ((!txtID.getText().isEmpty())&&(!txtPlaca.getText().isEmpty())&&(!txtMarca.getText().isEmpty())&&(!txtModelo.getText().isEmpty())&&(!txtColor.getText().isEmpty())&&(!txtCategoria.getText().isEmpty())&&(!txtFecha.getText().isEmpty())&&(!txtSede.getText().isEmpty())&&(!txtEstado.getText().isEmpty())&&(!txtKilometraje.getText().isEmpty())) {
+            		Date fecha = new Date(txtFecha.getText());
+            		Date hoy = new Date();
+            		Boolean disp = false;
+            		if (fecha.getYear() < hoy.getYear() || (fecha.getYear() == hoy.getYear() && fecha.getMonth() < hoy.getMonth()) || (fecha.getYear() == hoy.getYear() && fecha.getMonth() == hoy.getMonth() && fecha.getDay() <= hoy.getDay())) {
+            			disp = true;
+            		}
+            		adminF.addCar(admin, Integer.parseInt(txtID.getText()), txtPlaca.getText(), txtCategoria.getText(), txtMarca.getText(), txtModelo.getText(), Float.parseFloat(txtKilometraje.getText()), disp, txtEstado.getText(), txtSede.getText(), txtColor.getText());
             		JOptionPane.showMessageDialog(null, "Se ha registrado el vehiculo con exito");
 	            	licenseFrame.setVisible(false);
             	}
@@ -116,7 +130,7 @@ public class AdminInterface extends JFrame implements ActionListener {
             }});
         licensePanel.add(btnContinuar);
         licenseFrame.getContentPane().add(licensePanel, BorderLayout.CENTER);
-        licenseFrame.setSize(400, 300);
+        licenseFrame.setSize(400, 500);
         licenseFrame.setLocationRelativeTo(parentFrame);
         licenseFrame.setVisible(true);
 	}
@@ -129,7 +143,7 @@ public class AdminInterface extends JFrame implements ActionListener {
         licensePanel.setBackground(backgroundColor);
         licensePanel.setBorder(new EmptyBorder(20, 20, 20, 20));
         licensePanel.setLayout(new GridLayout(4, 2, 10, 10));
-        JLabel lbl = new JLabel("Placa");
+        JLabel lbl = new JLabel("ID");
         lbl.setForeground(Color.white);
         JTextField textField = new JTextField();
         licensePanel.add(lbl);
@@ -351,3 +365,5 @@ public class AdminInterface extends JFrame implements ActionListener {
 	}
 	}
 }
+
+

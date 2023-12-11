@@ -7,19 +7,24 @@ import UserInformationHolder.User;
 import java.util.ArrayList;
 import java.util.List;
 
+import Catalog.CarCat;
+import Catalog.Carro;
+import Catalog.CarCat;
 public class Administrator {
     private static int contA = 0;
     private String name;
     private int ID;
     private String POS;
     private List<User> users;
-
+    private CarCat carcat;
+    
     public Administrator(String name, String POS, List<User> users) {
         contA++;
         this.name = name;
         this.ID = contA;
         this.POS = POS;
         this.users = users;
+        
     }
 
     public Administrator(String name, String POS) {
@@ -94,6 +99,10 @@ public class Administrator {
         }
         throw new RuntimeException("Usuario no encontrado");
     }
+    public void addCar(Carro e) {
+    	
+		carcat.agregarCarro(e);
+    }
 
     @Override
     public String toString() {
@@ -104,4 +113,5 @@ public class Administrator {
                 ", users=" + users +
                 '}'+'\n';
     }
+    
 }

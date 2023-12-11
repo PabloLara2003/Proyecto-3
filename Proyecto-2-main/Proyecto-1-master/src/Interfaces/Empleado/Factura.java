@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 
 public class Factura {
 
+
     public void prueba() {
         // Pide al usuario que ingrese el valor del alquiler
         String precioReserva = JOptionPane.showInputDialog("Ingrese el valor del alquiler:");
@@ -52,7 +53,7 @@ public class Factura {
             g.drawString("Precio Reserva: $" + precioReserva, 100, 150);
             g.drawString("Precio Recargo: $" + precioRecargo, 100, 170);
             g.drawString("Firma administrador", 100, 280);
-            g.drawString("___________________", 100, 350);
+            g.drawString("_______", 100, 350);
             
             // Load the image
             Image firmaImage = loadImage("/imagenes/firma.jpg");
@@ -85,7 +86,7 @@ public class Factura {
     }
 
     public static void main(String[] args) {
-        EjemploPDF obj = new EjemploPDF();
+        Factura obj = new Factura();
         obj.prueba();
     }
 }

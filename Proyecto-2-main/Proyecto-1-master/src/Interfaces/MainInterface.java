@@ -5,7 +5,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Controller.Administrator;
 import Interfaces.Empleado.Usuario; // Assuming Usuario is in the Empleado package
+import Handlers.ControllerAdminHandler;
 
 import javax.swing.JButton;
 import java.awt.Color;
@@ -15,7 +17,8 @@ import java.awt.event.ActionListener;
 public class MainInterface extends JFrame {
 
     private JPanel contentPane;
-
+    private ControllerAdminHandler cah = new ControllerAdminHandler();
+    private Administrator admin = new Administrator("Juan", "Sede 1");
     /**
      * Launch the application.
      */
@@ -85,7 +88,7 @@ public class MainInterface extends JFrame {
         Administrador.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Create and show the "Admin" JFrame
-                Interfaces.AdminInterface administradorFrame = new Interfaces.AdminInterface();
+                Interfaces.AdminInterface administradorFrame = new Interfaces.AdminInterface(cah, admin);
                 administradorFrame.setVisible(true);
 
                 // Close the current frame
